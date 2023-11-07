@@ -15,7 +15,7 @@ class ProductsHandler {
         status: 'success',
         message: 'Produk berhasil dimasukkan',
         data: {
-          name
+          id
         },
       });
       response.code(201);
