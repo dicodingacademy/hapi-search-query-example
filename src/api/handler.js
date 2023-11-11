@@ -1,6 +1,8 @@
+const products = require("./products");
+
 class ProductsHandler {
-  constructor(service) {
-    this._service = service;
+  constructor(validator) {
+    this._validator = validator;
 
     this.postProductHandler = this.postProductHandler.bind(this);
     this.getProductsHandler = this.getProductsHandler.bind(this);
@@ -9,13 +11,13 @@ class ProductsHandler {
   async postProductHandler(request, h) {
       const { name, price, category } = request.payload;
 
-      const id = await this._service.addProduct({ name, price, category });
+      products.push({ name, price, category });
 
       const response = h.response({
         status: 'success',
         message: 'Produk berhasil dimasukkan',
         data: {
-          id
+          name
         },
       });
       response.code(201);
@@ -23,14 +25,16 @@ class ProductsHandler {
   }
 
   async getProductsHandler(request, h) {
-    const { name= '' } = request.query;
+    const { name = '' } = request.query;
 
-    const products = await this._service.getProducts(name)
+    await this._validator.validateQuery({ name });
+
+    const product = products.filter((product) => product.name === name)[0];
       const response = h.response ({
         status: 'success',
         message: 'Produk berhasil ditampilkan',
         data: {
-          products
+          product
         },
       });
       return response;
