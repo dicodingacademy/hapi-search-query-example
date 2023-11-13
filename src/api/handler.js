@@ -9,19 +9,19 @@ class ProductsHandler {
   }
 
   async postProductHandler(request, h) {
-      const { name, price, category } = request.payload;
+    const { name, price, category } = request.payload;
 
-      products.push({ name, price, category });
+    products.push({ name, price, category });
 
-      const response = h.response({
-        status: 'success',
-        message: 'Produk berhasil dimasukkan',
-        data: {
-          name
-        },
-      });
-      response.code(201);
-      return response;
+    const response = h.response({
+      status: 'success',
+      message: 'Produk berhasil dimasukkan',
+      data: {
+        name
+      },
+    });
+    response.code(201);
+    return response;
   }
 
   async getProductsHandler(request, h) {
@@ -30,14 +30,14 @@ class ProductsHandler {
     await this._validator.validateQuery({ name });
 
     const product = products.filter((product) => product.name === name)[0];
-      const response = h.response ({
-        status: 'success',
-        message: 'Produk berhasil ditampilkan',
-        data: {
-          product
-        },
-      });
-      return response;
+    const response = h.response ({
+      status: 'success',
+      message: 'Produk berhasil ditampilkan',
+      data: {
+        product
+      },
+    });
+    return response;
   }
 }
 
