@@ -10,9 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@hapi/hapi": "^21.3.2",
-    "dotenv": "^16.3.1",
-    "nanoid": "^3.3.7",
-    "pg": "^8.11.3"
+    "@hapi/hapi": "^21.3.2"
   }
 }
