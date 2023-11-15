@@ -1,7 +1,6 @@
 require('dotenv').config();
 const Hapi = require('@hapi/hapi');
 const products = require('./api');
-const ProductValidator = require('./validator');
 
 const init = async () => {
   const server = Hapi.Server({
@@ -14,9 +13,6 @@ const init = async () => {
 
   await server.register({
     plugin: products,
-    options: {
-      validator: ProductValidator
-    },
   });
 
   await server.start();
