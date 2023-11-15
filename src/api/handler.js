@@ -29,12 +29,23 @@ class ProductsHandler {
 
     await this._validator.validateQuery({ name });
 
-    const product = products.filter((product) => product.name === name)[0];
+    if (name !== '') {
+      const product = products.filter((product) => product.name === name);
+      const response = h.response ({
+        status: 'success',
+        message: 'Produk berhasil ditampilkan',
+        data: {
+          product
+        },
+      });
+      return response;
+    }
+
     const response = h.response ({
       status: 'success',
       message: 'Produk berhasil ditampilkan',
       data: {
-        product
+        products
       },
     });
     return response;
