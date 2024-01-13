@@ -1,4 +1,3 @@
-require('dotenv').config();
 const Hapi = require('@hapi/hapi');
 const products = require('./api');
 const ProductValidator = require('./validator');
